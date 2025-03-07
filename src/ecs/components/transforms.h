@@ -4,6 +4,8 @@
 #include "ecs.h"
 #include <cglm/cglm.h>
 
+#define NO_PARENT 10000
+
 typedef struct {
     vec3 pos, rot, scale;
     mat4 mat;
