@@ -1,0 +1,24 @@
+{
+    "files.associations": {
+        "glu.h": "c",
+        "stdlib.h": "c",
+        "shader.h": "c",
+        "stdio.h": "c",
+        "postprocess.h": "c",
+        "sdl_window.h": "c",
+        "sdl.h": "c",
+        "algorithm": "c",
+        "transforms.h": "c",
+        "cglm.h": "c",
+        "format": "c",
+        "initializer_list": "c",
+        "list": "c",
+        "type_traits": "c",
+        "vector": "c",
+        "xhash": "c",
+        "xstring": "c",
+        "xtree": "c",
+        "xutility": "c"
+    },
+    "makefile.configureOnOpen": false
+}

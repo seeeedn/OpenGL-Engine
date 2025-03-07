@@ -1,0 +1,1 @@
+C:\msys64\mingw64\bin\gcc.exe -Iinclude -Llib -o build/main.exe src/main.c src/glad.c src/shader.c src/camera.c src/mesh.c -lmingw32 -lSDL2main -lSDL2 -lopengl32 -lcglm
