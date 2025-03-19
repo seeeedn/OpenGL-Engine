@@ -1,7 +1,7 @@
 #include "camera.h"
 
-extern CameraComponent camera_components[MAX_ENTITIES];
-extern bool has_camera[MAX_ENTITIES] = {false};
+CameraComponent camera_components[MAX_ENTITIES];
+bool has_camera[MAX_ENTITIES] = {false};
 
 void init_camera(Entity e, vec3 position, vec3 up, float yaw, float pitch) {
     if (e >= MAX_ENTITIES || has_camera[e]) {

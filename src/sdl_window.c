@@ -19,15 +19,15 @@ Window init_window(const char *title, int width, int height) {
     return window;
 }
 
-void window_poll_events(Window *window, int *running, Camera *camera) {
+void window_poll_events(Window *window, int *running) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
             *running = 0;
         }
-        if (event.type == SDL_MOUSEMOTION) {
+/*         if (event.type == SDL_MOUSEMOTION) {
             handle_mouse_input(camera, event.motion.xrel, event.motion.yrel);
-        }
+        } */
     }
 }
 
@@ -61,6 +61,7 @@ void change_render_mode() {
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     if (keystate[SDL_SCANCODE_2])
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 }
 
 const Uint8* get_button_pressed() {

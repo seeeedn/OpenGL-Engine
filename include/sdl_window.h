@@ -11,7 +11,7 @@ typedef struct {
 } Window;
 
 Window init_window(const char *title, int width, int height);
-void window_poll_events(Window *window, int *running, Camera *camera);
+void window_poll_events(Window *window, int *running);
 void window_swap_buffers(Window *window);
 void destroy_window(Window *window);
 float get_delta_time(Uint64 *last);

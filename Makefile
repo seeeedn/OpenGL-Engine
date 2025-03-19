@@ -1,2 +1,2 @@
 all:
-	C:\msys64\mingw64\bin\gcc.exe -Iinclude -Llib -o build/main.exe src/main.c src/glad.c src/shader.c src/camera.c src/mesh.c src/asset_loader.c src/transform.c src/material.c src/sdl_window.c src/game_object.c src/scene.c -lmingw32 -lSDL2main -lSDL2 -lopengl32 -lcglm -lassimp
+	C:\msys64\mingw64\bin\gcc.exe -Iinclude -Llib -o build/main.exe src/main.c src/glad.c src/ecs/components/shader.c src/ecs/components/camera.c src/ecs/components/transforms.c src/sdl_window.c src/ecs/components/render_data.c src/ecs/components/render_system.c -lmingw32 -lSDL2main -lSDL2 -lopengl32 -lcglm -lassimp
