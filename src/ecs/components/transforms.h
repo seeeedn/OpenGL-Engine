@@ -2,6 +2,7 @@
 #define TRANSFORMS_H
 
 #include "ecs.h"
+#include "position.h"
 #include <cglm/cglm.h>
 
 #define NO_PARENT MAX_ENTITIES

@@ -9,7 +9,7 @@ void add_transform(Entity e, vec3 pos, vec3 rot, vec3 scale) {
         return;
     }
 
-    glm_vec3_copy(pos, transform_components[e].pos);
+    init_position(e, pos);
     glm_vec3_copy(rot, transform_components[e].rot);
     glm_vec3_copy(scale, transform_components[e].scale);
 
@@ -31,9 +31,9 @@ void update_transform_matrix() {
         glm_mat4_identity(position);
         glm_mat4_identity(rotation);
         glm_mat4_identity(scaling);
-        
+
         glm_mat4_identity(transform_components[i].mat);
-        glm_translate(position, transform_components[i].pos);
+        glm_translate(position, position_components[i].pos);
         glm_euler_xyz(transform_components[i].rot, rotation);
         glm_scale_make(scaling, transform_components[i].scale);
 

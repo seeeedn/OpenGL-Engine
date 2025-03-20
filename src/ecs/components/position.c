@@ -3,23 +3,24 @@
 PositionComponent position_components[MAX_ENTITIES];
 bool has_position[MAX_ENTITIES] = {false};
 
-void init_positon(Entity e, int x, int y, int z) {
+void init_position(Entity e, vec3 pos) {
     if (e >= MAX_ENTITIES || has_position[e]) {
         printf("ERROR: Invalid Entity %d in init_position()!", e);
         return;
     }
-
-
-
-    position_components[e].x = x;
-    position_components[e].y = y;
-    position_components[e].z = z;
+ 
+    glm_vec3_copy(pos, position_components[e].pos);
 
     has_position[e] = true;
 }
 
-void move() {
+void move_to(Entity e, vec3 new_pos) {
+    if (e >= MAX_ENTITIES || !has_position[e]) {
+        printf("ERROR: Invalid Entity %d in move()!", e);
+        return;
+    }
 
+    glm_vec3_copy(new_pos, position_components[e].pos);
 }
 
 void delete_position(Entity e) {
@@ -28,9 +29,8 @@ void delete_position(Entity e) {
         return;
     }
 
-    position_components[e].x = 0;
-    position_components[e].y = 0;
-    position_components[e].z = 0;
+    vec3 del_vec = {0.0f, 0.0f, 0.0f};
+    glm_vec3_copy(del_vec, position_components[e].pos);
 
     has_position[e] = false;
 }

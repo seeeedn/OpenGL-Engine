@@ -7,6 +7,7 @@
 #include "ecs/components/render_data.h"
 #include "ecs/components/render_system.h"
 #include "ecs/components/transforms.h"
+#include "ecs/components/position.h"
 #include "sdl_window.h"
 
 #define SCREEN_WIDTH 1000
@@ -29,16 +30,18 @@ int main(int argc, char *argv[]) {
     Window window = init_window("OpenGL-Engine", SCREEN_WIDTH, SCREEN_HEIGHT);
     glEnable(GL_DEPTH_TEST);
 
-    const char *vertex_shader_source = "C:/Users/jonas/OneDrive/Desktop/OpenGL_test/shaders/shader.vert";
-    const char *fragment_shader_source = "C:/Users/jonas/OneDrive/Desktop/OpenGL_test/shaders/shader.frag";
+    const char *vertex_shader_source = "../shaders/shader.vert";
+    const char *fragment_shader_source = "../shaders/shader.frag";
 
     init_shader(1, vertex_shader_source, fragment_shader_source);
 
-    load_model(1, "C:/Users/jonas/OneDrive/Desktop/OpenGL_test/assets/models/pdr.glb");
+    load_model(1, "../assets/models/pdr.glb");
 
     vec3 position = {0.0f, 0.0f, -50.0f};
     vec3 rotation = {0.0f, 0.0f, 0.0f};
     vec3 scale = {1.0f, 1.0f, 1.0f};
+
+    vec3 new_pos = {0.0f, 50.0f, -50.0f};
 
     add_transform(1, position, rotation, scale);
 
@@ -48,6 +51,7 @@ int main(int argc, char *argv[]) {
     float delta_time = 0;
 
     init_camera(0, camera_pos, camera_up, yaw, pitch);
+    move_to(1, new_pos);
 
     int running = 1;
     while (running) {
