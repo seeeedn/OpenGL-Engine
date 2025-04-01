@@ -4,10 +4,11 @@ static Entity next_entity = 0;
 static bool entity_alive[MAX_ENTITIES];
 static Entity free_entities[MAX_ENTITIES];
 static int free_entity_count = MAX_ENTITIES;
+u32 component_mask[MAX_ENTITIES] = 0;
 
 Entity create_entity() {
     if (free_entity_count > 0) {
-        Entity e = free_entities[free_entity_count--];
+        Entity e = free_entities[--free_entity_count];
         entity_alive[e] = true;
         return e;
     }
@@ -23,10 +24,29 @@ Entity create_entity() {
 
 void delete_entity(Entity e) {
     if (e >= MAX_ENTITIES || !entity_alive[e]) {
-        printf("WARNING: Tried to destroy a non-existent entity %u\n", e);
+        printf("WARNING: Tried to destroy a non-existent entity %u!\n", e);
         return;
     }
 
+    component_mask[e] = 0;
     entity_alive[e] = false;
     free_entities[free_entity_count++] = e;
+}
+
+void add_comp(Entity e, u32 comp) {
+    if (e >= MAX_ENTITIES) {
+        printf("WARNING: Tried to access a non-existent entity %u!\n", e);
+        return;
+    }
+
+    component_mask[e] |= comp;
+}
+
+void delete_comp(Entity e, u32 comp) {
+    if (e >= MAX_ENTITIES) {
+        printf("WARNING: Tried to access a non-existent entity %u!\n", e);
+        return;
+    }
+
+    component_mask[e] &= ~comp;
 }

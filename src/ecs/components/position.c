@@ -15,7 +15,7 @@ void init_position(Entity e, vec3 pos) {
 }
 
 void move_to(Entity e, vec3 new_pos) {
-    if (e >= MAX_ENTITIES || !has_position[e]) {
+    if (e >= MAX_ENTITIES || !has_position[e]) { 
         printf("ERROR: Invalid Entity %d in move()!", e);
         return;
     }
