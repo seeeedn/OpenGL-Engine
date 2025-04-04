@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     init_camera(0, camera_pos, camera_up, yaw, pitch);
     move_to(1, new_pos);
 
-    int running = 1;
+    bool running = true;
     while (running) {
         delta_time = get_delta_time(&last);
 

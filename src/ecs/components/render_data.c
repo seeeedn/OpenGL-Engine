@@ -141,5 +141,5 @@ void delete_render_comp(Entity e) {
     free(render_components[e].meshes);
     render_components[e].mesh_count = 0;
 
-    has_render_comp[e] = false;
+    delete_comp(e, COMPONENT_RENDER_DATA);
 }

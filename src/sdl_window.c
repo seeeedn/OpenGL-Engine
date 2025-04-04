@@ -19,11 +19,11 @@ Window init_window(const char *title, int width, int height) {
     return window;
 }
 
-void window_poll_events(Window *window, int *running) {
+void window_poll_events(Window *window, bool *running) {
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
-            *running = 0;
+            *running = false;
         }
 /*         if (event.type == SDL_MOUSEMOTION) {
             handle_mouse_input(camera, event.motion.xrel, event.motion.yrel);

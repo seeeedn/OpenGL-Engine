@@ -26,6 +26,6 @@ extern u32 component_mask[MAX_ENTITIES];
 Entity create_entity();
 void destroy_entity(Entity e);
 void add_comp(Entity e, u32 comp);
-void delete_comp(Enitiy e, u32 comp);
+void delete_comp(Entity e, u32 comp);
 
 #endif
