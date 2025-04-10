@@ -14,7 +14,7 @@ typedef struct {
 } TransformComponent;
 
 extern TransformComponent transform_components[MAX_ENTITIES];
-extern bool has_transform[MAX_ENTITIES];
+extern bool has_transform[MAX_ENTITIES];        // deprecated
 
 void add_transform(Entity e, vec3 pos, vec3 rot, vec3 scale);
 void update_transform_matrix();

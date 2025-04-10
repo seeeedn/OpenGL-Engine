@@ -1,10 +1,10 @@
 #include "camera.h"
 
 CameraComponent camera_components[MAX_ENTITIES];
-bool has_camera[MAX_ENTITIES] = {false};
+bool has_camera[MAX_ENTITIES] = {false};        // deprecated
 
 void init_camera(Entity e, vec3 position, vec3 up, float yaw, float pitch) {
-    if (e >= MAX_ENTITIES || has_camera[e]) {
+    if (e >= MAX_ENTITIES || HAS_COMPONENT(e, COMPONENT_CAMERA)) {
         printf("ERROR: Entity index %d exceeds MAX_ENTITIES (%d) or Entity has a Camera already!\n", e, MAX_ENTITIES);
         return;
     }
@@ -17,12 +17,12 @@ void init_camera(Entity e, vec3 position, vec3 up, float yaw, float pitch) {
     camera_components[e].yaw = yaw;
     camera_components[e].pitch = pitch;
 
-    has_camera[e] = true;
+    add_comp(e, COMPONENT_CAMERA);
     update_camera_vectors(e);
 }
 
 void update_camera_vectors(Entity e) {
-    if (e >= MAX_ENTITIES || !has_camera[e]) {
+    if (e >= MAX_ENTITIES || !HAS_COMPONENT(e, COMPONENT_CAMERA)) {
         printf("ERROR: Invalid entity (%d) in update_camera_vectors().\n", e);
         return;
     }
@@ -39,7 +39,7 @@ void update_camera_vectors(Entity e) {
 }
 
 void get_camera_view_matrix(Entity e, mat4 view) {
-    if (e >= MAX_ENTITIES || !has_camera[e]) {
+    if (e >= MAX_ENTITIES || !HAS_COMPONENT(e, COMPONENT_CAMERA)) {
         printf("ERROR: Invalid entity (%d) in get_camera_view_matrix().\n", e);
         return;
     }
@@ -50,10 +50,10 @@ void get_camera_view_matrix(Entity e, mat4 view) {
 }
 
 void remove_camera(Entity e) {
-    if (e >= MAX_ENTITIES || !has_camera[e]) {
+    if (e >= MAX_ENTITIES || !HAS_COMPONENT(e, COMPONENT_CAMERA)) {
         printf("ERROR: Invalid entity (%d) in delete_camera().\n", e);
         return;
     }
     
-    has_camera[e] = false;
+    delete_comp(e, COMPONENT_CAMERA);
 }

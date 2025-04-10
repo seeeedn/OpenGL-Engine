@@ -29,16 +29,16 @@ static Mesh create_mesh(float *vertices, size_t vertex_size, GLuint *indices, si
     mesh.vertex_count = vertex_size / (stride * sizeof(float));
     size_t stride_2 = vertex_size / mesh.vertex_count;
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride_2, (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride_2, (void *)0);
     glEnableVertexAttribArray(0);
 
     if (stride_2 >= 6 * sizeof(float)) {
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride_2, (void*)(3 * sizeof(float)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride_2, (void *)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
     }
 
     if (stride_2 >= 8 * sizeof(float)) {
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, stride_2, (void*)(6 * sizeof(float)));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, stride_2, (void *)(6 * sizeof(float)));
         glEnableVertexAttribArray(2);
     }
 
@@ -141,5 +141,5 @@ void delete_render_comp(Entity e) {
     free(render_components[e].meshes);
     render_components[e].mesh_count = 0;
 
-    delete_comp(e, COMPONENT_RENDER_DATA);
+    has_render_comp[e] = false;
 }

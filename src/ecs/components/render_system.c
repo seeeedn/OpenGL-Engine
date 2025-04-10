@@ -17,7 +17,7 @@ void render() {
     GLuint last_shader_prog = 0;
 
     for (int i = 0; i < MAX_ENTITIES; i++) {
-        if (!has_transform[i]) {
+        if (!HAS_COMPONENT(i, COMPONENT_TRANSFORM) || !HAS_COMPONENT(i, COMPONENT_RENDER_DATA)) {
             continue;
         }
         
@@ -48,7 +48,7 @@ void render() {
                 // render with EBO
                 glDrawElements(GL_TRIANGLES, mesh->index_count, GL_UNSIGNED_INT, 0);
             } else {
-                // render with VAO
+                // render with VBO
                 glDrawArrays(GL_TRIANGLES, 0, mesh->vertex_count);
             }
             glBindVertexArray(0);

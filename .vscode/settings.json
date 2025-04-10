@@ -21,7 +21,9 @@
         "xutility": "c",
         "asset_loader.h": "c",
         "scene.h": "c",
-        "game_object.h": "c"
+        "game_object.h": "c",
+        "camera.h": "c",
+        "render_system.h": "c"
     },
     "makefile.configureOnOpen": false
 }

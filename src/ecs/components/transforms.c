@@ -1,11 +1,16 @@
 #include "transforms.h"
 
 TransformComponent transform_components[MAX_ENTITIES];
-bool has_transform[MAX_ENTITIES] = {false};
+bool has_transform[MAX_ENTITIES] = {false};             // deprecated
 
 void add_transform(Entity e, vec3 pos, vec3 rot, vec3 scale) {
-    if (e >= MAX_ENTITIES || HAS_COMPONENT(e, COMPONENT_TRANSFORM)) {
-        printf("Exceeds MAX_ENTITIES or Entity already has a Transform!");
+    if (e >= MAX_ENTITIES) {
+        printf("ERROR: Exceeds MAX_ENTITIES!");
+        return;
+    }
+
+    if (HAS_COMPONENT(e, COMPONENT_TRANSFORM)) {
+        printf("WARNING: Entity: %d already has a Transform!", e);
         return;
     }
 
@@ -37,8 +42,12 @@ void update_transform_matrix() {
         glm_euler_xyz(transform_components[i].rot, rotation);
         glm_scale_make(scaling, transform_components[i].scale);
 
-        glm_mat4_mul(position, rotation, transform_components[i].mat);
-        glm_mat4_mul(transform_components[i].mat, scaling, transform_components[i].mat);
+/*         glm_mat4_mul(transform_components[i].mat, scaling, transform_components[i].mat);
+        glm_mat4_mul(transform_components[i].mat, rotation, transform_components[i].mat);
+        glm_mat4_mul(transform_components[i].mat, position, transform_components[i].mat); */
+
+        glm_mat4_mul(scaling, rotation, transform_components[i].mat);
+        glm_mat4_mul(transform_components[i].mat, position, transform_components[i].mat);
 
         if (parent < NO_PARENT && HAS_COMPONENT(parent, COMPONENT_TRANSFORM)) {
             glm_mat4_mul(transform_components[parent].mat, transform_components[i].mat, transform_components[i].mat);

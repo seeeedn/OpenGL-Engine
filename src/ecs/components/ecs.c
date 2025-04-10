@@ -4,8 +4,9 @@ static Entity next_entity = 0;
 static bool entity_alive[MAX_ENTITIES];
 static Entity free_entities[MAX_ENTITIES];
 static int free_entity_count = MAX_ENTITIES;
-u32 component_mask[MAX_ENTITIES] = 0;
+u32 component_mask[MAX_ENTITIES] = {0};
 
+// needs to be refractored
 Entity create_entity() {
     if (free_entity_count > 0) {
         Entity e = free_entities[--free_entity_count];

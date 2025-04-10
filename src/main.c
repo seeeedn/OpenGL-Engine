@@ -8,14 +8,15 @@
 #include "ecs/components/render_system.h"
 #include "ecs/components/transforms.h"
 #include "ecs/components/position.h"
+#include "ecs/components/ecs.h"
 #include "sdl_window.h"
 
 #define SCREEN_WIDTH 1000
 #define SCREEN_HEIGHT 800
 
-vec3 camera_pos = {0.0f, 0.0f, 3.0f};  // Camera start position
-vec3 camera_front = {0.0f, 0.0f, -1.0f};  // Direction camera is facing
-vec3 camera_up = {0.0f, 1.0f, 0.0f};  // Up vector
+vec3 camera_pos = {0.0f, 0.0f, 3.0f};       // Camera start position
+vec3 camera_front = {0.0f, 0.0f, -1.0f};    // Direction camera is facing
+vec3 camera_up = {0.0f, 1.0f, 0.0f};        // Up vector
 
 float yaw = -90.0f;  // Yaw (horizontal rotation)
 float pitch = 0.0f;  // Pitch (vertical rotation)
@@ -51,7 +52,15 @@ int main(int argc, char *argv[]) {
     float delta_time = 0;
 
     init_camera(0, camera_pos, camera_up, yaw, pitch);
-    move_to(1, new_pos);
+    //move_to(1, new_pos);
+
+/*     Entity e = create_entity();
+    Entity e2 = create_entity();
+    printf("e1: %d\ne2: %d\n", e, e2);
+
+    delete_entity(e);
+    Entity e3 = create_entity();
+    printf("new e: %d", e3); */
 
     bool running = true;
     while (running) {
