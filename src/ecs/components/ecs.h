@@ -22,7 +22,7 @@ typedef uint32_t u32;
 #define COMPONENT_SCRIPT        (1 << 7)
 #define COMPONENT_ANIMATION     (1 << 8)
 
-#define FREE_ENTITY             (1U << 31)
+#define USED_ENTITY             (1U << 31)
 
 extern u32 component_mask[MAX_ENTITIES];
 

@@ -2,6 +2,8 @@
 
 static Entity next_entity = 0;
 static bool entity_alive[MAX_ENTITIES];
+
+
 static Entity free_entities[MAX_ENTITIES];
 static int free_entity_count = MAX_ENTITIES;
 u32 component_mask[MAX_ENTITIES] = {0};
@@ -11,6 +13,7 @@ Entity create_entity() {
     if (free_entity_count > 0) {
         Entity e = free_entities[--free_entity_count];
         entity_alive[e] = true;
+        ADD_COMPONENT(e, USED_ENTITY);
         return e;
     }
     
@@ -20,6 +23,7 @@ Entity create_entity() {
     }
 
     printf("ERROR: Maximum entity count reached!\n");
+
     return INVALID_ENTITY;
 }
 
@@ -32,6 +36,7 @@ void delete_entity(Entity e) {
     component_mask[e] = 0;
     entity_alive[e] = false;
     free_entities[free_entity_count++] = e;
+    DEL_COMPONENT(e, USED_ENTITY);
 }
 
 void add_comp(Entity e, u32 comp) {
